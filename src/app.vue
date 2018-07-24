@@ -5,7 +5,7 @@
 <script>
   export default {
     data() {
-      return { text: 'aaa' };
+      return { text: 'abc' };
     }
   }
 </script>
