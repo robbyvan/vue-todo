@@ -39,7 +39,7 @@ if (isDev) {
         {
           test: /\.styl/,
           use: [
-            'style-loader',
+            'vue-style-loader',
             'css-loader',
             'postcss-loader',
             'stylus-loader'
