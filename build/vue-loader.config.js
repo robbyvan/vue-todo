@@ -4,7 +4,10 @@ module.exports = (isDev) => {
   return {
     preserveWhitespace: true, // template末尾空格的情况
     extractCSS: !isDev, // 
-    cssModules: {},
+    cssModules: {
+      localIdentName: isDev ? "[path]-[name]-[hash:base64:5]" : '[hash:base64:5]', // css对应的classname编译成根据文件名生成的名字
+      camelCase: true, // css中"-"命名转换成camel case在js调用
+    },
     // hotReload: false // 根据环境变量生成
     // loaders: {
       // 'docs': docsLoader,
