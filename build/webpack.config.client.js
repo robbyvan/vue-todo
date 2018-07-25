@@ -41,7 +41,12 @@ if (isDev) {
           use: [
             'vue-style-loader',
             'css-loader',
-            'postcss-loader',
+            {
+              loader: 'postcss-loader',
+            //   options: {
+            //     sourceMap: true,
+            //   }
+            },
             'stylus-loader'
           ],
         },
@@ -67,9 +72,14 @@ if (isDev) {
         {
           test: /\.styl/,
           use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
+            // MiniCssExtractPlugin.loader,
+            // 'css-loader',
+            // {
+            //   loader: 'postcss-loader',
+            //   options: {
+            //     sourceMap: true,
+            //   }
+            // },
             'stylus-loader',
           ],
         },
