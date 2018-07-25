@@ -25,20 +25,20 @@
 
 <script>
   import Item from './item.vue';
-  import Tabs from './tabs.vue';
+import Tabs from './tabs.vue';
 
-  let id = 0;
+let id = 0;
 
-  export default {
-    data() {
+export default {
+    data () {
       return {
         todos: [],
-        filter: 'all',
+        filter: 'all'
       };
     },
     computed: {
-      filteredTodos() {
-        if(this.filter === 'all') {
+      filteredTodos () {
+        if (this.filter === 'all') {
           return this.todos;
         }
         const completed = (this.filter === 'completed');
@@ -50,28 +50,28 @@
       Tabs
     },
     methods: {
-      addTodo(e) {
+      addTodo (e) {
         this.todos = [{
           id: id++,
           content: e.target.value.trim(),
-          completed: false,
+          completed: false
         },
-        ...this.todos,
-      ];
+        ...this.todos
+        ];
         e.target.value = '';
       },
-      deleteTodo(id) {
+      deleteTodo (id) {
         const index = this.todos.findIndex(todo => todo.id === id);
-        this.todos = [ ...this.todos.slice(0, index), ...this.todos.slice(index + 1)];
+        this.todos = [ ...this.todos.slice(0, index), ...this.todos.slice(index + 1) ];
       },
-      toggleFilter(state) {
+      toggleFilter (state) {
         this.filter = state;
       },
-      clearAllCompleted() {
+      clearAllCompleted () {
         this.todos = this.todos.filter(todo => !todo.completed);
       }
     }
-  }
+  };
 </script>
 
 <style lang="stylus" scoped>
