@@ -4,6 +4,8 @@ const webpack = require('webpack');
 // // 启动脚本时的变量存在于process.env变量中
 const isDev = process.env.NODE_ENV === 'development'
 
+const createVueLoaderOptions = require('./vue-loader.config');
+
 const config = {
   mode: process.env.NODE_ENV || 'production', // dev or production
   target: 'web',
@@ -17,6 +19,7 @@ const config = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: createVueLoaderOptions(isDev),
       },
       {
         test: /\.js$/,
