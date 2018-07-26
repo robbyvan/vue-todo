@@ -5,7 +5,7 @@ import routes from './routes';
 export const createRouter = () => {
   return new Router({
     routes,
-    mode: 'history',
+    // mode: 'history',
     // base: '/base/',
     // linkActiveClass: 'active-link', //
     // linkExactActiveClass: 'exact-active-link' // 多个时准确的path
@@ -22,7 +22,7 @@ export const createRouter = () => {
     // stringifyQuery (obj) {
 
     // },
-    fallback: true
+    // fallback: true
   });
 };
 

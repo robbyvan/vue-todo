@@ -4,21 +4,28 @@
     <Header></Header>
     <router-link to="/app">app</router-link>
     <router-link to="/login">login</router-link>
-    <router-view />
+    <transition name="fade">
+      <router-view />
+    </transition>
+
     <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Header from './layout/header.vue';
-import Todo from './views/todo/todo.vue';
+// import Todo from './views/todo/todo.vue';
 import Footer from './layout/footer.jsx';
 
 export default {
   components: {
     Header,
     Footer,
-    Todo
+    // Todo
+  },
+  mounted () {
+    console.log(this.$route);
+    console.log(this.$router);
   }
 };
 </script>

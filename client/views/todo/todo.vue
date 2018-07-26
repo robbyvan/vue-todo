@@ -25,11 +25,23 @@
 
 <script>
   import Item from './item.vue';
-import Tabs from './tabs.vue';
+  import Tabs from './tabs.vue';
 
-let id = 0;
+  let id = 0;
 
-export default {
+  export default {
+    beforeRouteEnter (to, from, next) {
+      console.log('before route enter.');
+      next();
+    },
+    beforeRouteUpdate (to, from, next) {
+      console.log('before route update.');
+      next();
+    },
+    beforeRouteLeave (to, from, next) {
+      console.log('before route leave.');
+      next();
+    },
     data () {
       return {
         todos: [],
