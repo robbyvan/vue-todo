@@ -6,6 +6,7 @@
   "parser": "babel-eslint",
   "rules": {
     "semi": ["error", "always"],
-    "no-new": "off"
+    "no-new": "off",
+    "comma-dangle": ["error","only-multiline"]
   }
 }
