@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HTMLPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
+const VueClientPlugin = require('vue-server-renderer/client-plugin');
 
 const baseConfig = require('./webpack.config.base');
 
@@ -21,7 +22,8 @@ const defaultPlugins = [
   new HTMLPlugin({
     template: path.join(__dirname, 'template.html')
   }),
-  new VueLoaderPlugin()
+  new VueLoaderPlugin(),
+  new VueClientPlugin(),
 ];
 
 const devServer = {
@@ -31,7 +33,7 @@ const devServer = {
     errors: true,
   },
   historyApiFallback: {
-    index: '/index.html',
+    index: '/public/index.html'
   },
   hot: true,
 };
@@ -66,25 +68,21 @@ if (isDev) {
 } else {
   config = merge(baseConfig, {
     entry: {
-      app: path.join(__dirname, '../client/index.js'),   //__dirname表示当前文件所在的目录地址，利用join()拼接成绝对路径
+      app: path.join(__dirname, '../client/client-entry.js'),
       // vendor: ['vue'], // deprecated @v4.0
     },
     output: {
       filename: '[name].[chunkhash:8].js',
+      publicPath: '/public/'
     },
     module: {
       rules: [
         {
           test: /\.styl/,
           use: [
-            // MiniCssExtractPlugin.loader,
-            // 'css-loader',
-            // {
-            //   loader: 'postcss-loader',
-            //   options: {
-            //     sourceMap: true,
-            //   }
-            // },
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            'postcss-loader',
             'stylus-loader',
           ],
         },

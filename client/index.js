@@ -3,9 +3,10 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 
 import App from './app.vue';
-import './assets/styles/global.styl';
 import createRouter from './config/router';
 import createStore from './store/store';
+
+import './assets/styles/global.styl';
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
