@@ -2,13 +2,10 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
-    <p>{{ fullname }} {{ count }}</p>
-    <router-link to="/app">app</router-link>
-    <router-link to="/login">login</router-link>
     <transition name="fade">
       <router-view />
     </transition>
-
+    <button @click="notify">Push notification</button>
     <Footer></Footer>
   </div>
 </template>
@@ -34,10 +31,7 @@ export default {
     // Todo
   },
   mounted () {
-    console.log(this.$route);
-    console.log(this.$router);
-    console.log(this.$store);
-    this.updateCountAsync({ delay: 1000, num: 5 });
+
   },
   computed: {
     ...mapState(['count']),
@@ -45,7 +39,13 @@ export default {
   },
   methods: {
     ...mapActions(['updateCountAsync']),
-    ...mapMutations(['updateCount'])
+    ...mapMutations(['updateCount']),
+    notify () {
+      this.$notify({
+        content: 'test $notify',
+        btn: 'close',
+      });
+    },
   }
 };
 </script>
