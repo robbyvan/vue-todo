@@ -25,6 +25,9 @@ import Header from './layout/header.vue';
 import Footer from './layout/footer.jsx';
 
 export default {
+  metaInfo: {
+    title: 'Just a todo app',
+  },
   components: {
     Header,
     Footer,

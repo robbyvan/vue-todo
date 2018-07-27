@@ -30,6 +30,9 @@
   let id = 0;
 
   export default {
+    metaInfo: {
+      title: 'Todo',
+    },
     beforeRouteEnter (to, from, next) {
       console.log('before route enter.');
       next();
