@@ -36,6 +36,7 @@ const devServer = {
     index: '/public/index.html'
   },
   hot: true,
+  headers: { 'Access-Control-Allow-Origin': '*' },
 };
 
 if (isDev) {
