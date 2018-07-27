@@ -2,9 +2,11 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
+
     <transition name="fade">
       <router-view />
     </transition>
+
     <button @click="notify">Push notification</button>
     <Footer></Footer>
   </div>

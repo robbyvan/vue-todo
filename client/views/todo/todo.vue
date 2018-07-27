@@ -1,5 +1,10 @@
 <template>
   <section class="real-app">
+    <div class="tab-container">
+      <tabs :value="filter" @change="handleChangeTab">
+        <tab :label="t" :index="t" v-for="t in tabTexts" :key="t" />
+      </tabs>
+    </div>
     <input
       type="text"
       class="add-input"
@@ -13,19 +18,18 @@
       :key="todo.id"
       @del="deleteTodo"
     />
-    <Tabs
+    <Helper
       :filter="filter"
       :todos="todos"
-      @toggle="toggleFilter"
       @clearAll="clearAllCompleted"
-    ></Tabs>
+    ></Helper>
   </section>
 </template>
 
 
 <script>
   import Item from './item.vue';
-  import Tabs from './tabs.vue';
+  import Helper from './helper.vue';
 
   let id = 0;
 
@@ -33,22 +37,11 @@
     metaInfo: {
       title: 'Todo',
     },
-    beforeRouteEnter (to, from, next) {
-      console.log('before route enter.');
-      next();
-    },
-    beforeRouteUpdate (to, from, next) {
-      console.log('before route update.');
-      next();
-    },
-    beforeRouteLeave (to, from, next) {
-      console.log('before route leave.');
-      next();
-    },
     data () {
       return {
         todos: [],
-        filter: 'all'
+        filter: 'all',
+        tabTexts: ['all', 'active', 'completed'],
       };
     },
     computed: {
@@ -62,7 +55,7 @@
     },
     components: {
       Item,
-      Tabs
+      Helper
     },
     methods: {
       addTodo (e) {
@@ -79,38 +72,44 @@
         const index = this.todos.findIndex(todo => todo.id === id);
         this.todos = [ ...this.todos.slice(0, index), ...this.todos.slice(index + 1) ];
       },
-      toggleFilter (state) {
-        this.filter = state;
-      },
+
       clearAllCompleted () {
         this.todos = this.todos.filter(todo => !todo.completed);
-      }
+      },
+      handleChangeTab (value) {
+        this.filter = value;
+      },
     }
   };
 </script>
 
 <style lang="stylus" scoped>
-    .real-app {
-        width 600px
-        margin 0 auto
-        box-shadow 0 0 5px #666
-    }
-
-    .add-input {
-        position: relative;
-        margin: 0;
-        width: 100%;
-        font-size: 24px;
-        font-family: inherit;
-        font-weight: inherit;
-        line-height: 1.4em;
-        border: 0;
-        outline: none;
-        color: inherit;
-        box-sizing: border-box;
-        font-smoothing: antialiased;
-        padding: 16px 16px 16px 36px;
-        border: none;
-        box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
-    }
+.real-app{
+  width 600px
+  margin 0 auto
+  box-shadow 0 0 5px #666
+}
+.add-input{
+  position: relative;
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1.4em;
+  border: 0;
+  outline: none;
+  color: inherit;
+  padding: 6px;
+  border: 1px solid #999;
+  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  font-smoothing: antialiased;
+  padding: 16px 16px 16px 60px;
+  border: none;
+  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+.tab-container
+  background-color #fff
+  padding 0 15px
 </style>
