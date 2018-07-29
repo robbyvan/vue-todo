@@ -40,7 +40,7 @@ const notify = (options) => {
       ...rest
     },
     data: {
-      autoClose: autoClose || 2000,
+      autoClose: autoClose || 3000,
     }
   });
 

@@ -4,11 +4,27 @@ const webpack = require('webpack');
 //Plugins
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const merge = require('webpack-merge');
-const VueServerPlugin = require('vue-server-renderer/server-plugin');
+// const VueServerPlugin = require('vue-server-renderer/server-plugin');
+
+let config;
+
+const isDev = process.env.NODE_ENV === 'development';
 
 const baseConfig = require('./webpack.config.base');
 
-const config = merge(baseConfig, {
+let plugins = [
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    'process.env.VUE_ENV': '"server"',
+  }),
+  new VueLoaderPlugin(),
+];
+
+if (isDev) {
+  plugins = [...plugins, new VueServerPlugin()];
+}
+
+config = merge(baseConfig, {
     target: 'node',
     entry: path.join(__dirname, '../client/server-entry.js'),
     output: {
@@ -31,13 +47,13 @@ const config = merge(baseConfig, {
         },
       ]
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-        'process.env.NODE_ENV': '"server"',
-      }),
-      new VueServerPlugin(),
-      new VueLoaderPlugin(),
-    ],
+    plugins: plugins
   });
+
+config.resolve = {
+  alias: {
+    'model': path.join(__dirname, '../client/model/server-model.js')
+  }
+};
+
 module.exports = config;
