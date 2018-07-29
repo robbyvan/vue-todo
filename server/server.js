@@ -2,17 +2,24 @@ const path = require('path');
 const Koa = require('koa');
 const send = require('koa-send');
 const koaBody = require('koa-body');
+const koaSession = require('koa-session');
 
 const staticRouter = require('./routes/static');
 const apiRouter = require('./routes/api');
+const userRouter = require('./routes/user');
 
 const createDb = require('./db/db');
 const config = require('../app.config');
 
-console.log(createDb);
 const db = createDb(config.db.appId, config.db.appKey);
 
 const app = new Koa();
+
+app.keys = ['vue ssr tech'];
+app.use(koaSession({
+  key: 'koa:sess',
+  maxAge: 2 * 60 * 60 * 1000, // 2 hours
+}, app));
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -45,15 +52,18 @@ app.use(async (ctx, next) => {
 });
 
 app.use(koaBody());
+app.use(userRouter.routes()).use(userRouter.allowedMethods());
 app.use(staticRouter.routes()).use(staticRouter.allowedMethods());
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
 
 let pageRouter;
 
 if (isDev) {
-  pageRouter = require('./routes/dev-ssr');
+  // pageRouter = require('./routes/dev-ssr');
+  pageRouter = require('./routes/dev-ssr-no-bundle');
 } else {
-  pageRouter = require('./routes/ssr');
+  // pageRouter = require('./routes/ssr');
+  pageRouter = require('./routes/ssr-no-bundle');
 }
 
 app.use(pageRouter.routes()).use(pageRouter.allowedMethods());

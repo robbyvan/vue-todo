@@ -39,7 +39,7 @@ export default {
   data () {
     return {
       verticalOffset: 0,
-      autoClose: 2000,
+      autoClose: 3000,
       height: 0,
       visible: false,
     };

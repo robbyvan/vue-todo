@@ -35,6 +35,10 @@ const devServer = {
   historyApiFallback: {
     index: '/public/index.html'
   },
+  proxy: {
+    '/api': 'http://127.0.0.1:3333',
+    '/user': 'http://127.0.0.1:3333',
+  },
   hot: true,
   headers: { 'Access-Control-Allow-Origin': '*' },
 };
@@ -93,14 +97,21 @@ if (isDev) {
       new MiniCssExtractPlugin({
         filename: "styles.[contentHash:8].css",
       }),
+      new webpack.NamedChunksPlugin()
     ]),
     optimization: {
       splitChunks: {
         chunks: 'all'
       },
       runtimeChunk: true,
-    }
+    },
   });
+};
+
+config.resolve = {
+  alias: {
+    'model': path.join(__dirname, '../client/model/client-model.js')
+  }
 };
 
 module.exports = config;
