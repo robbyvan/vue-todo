@@ -10,10 +10,10 @@ const handleRequest = (request) => {
     request.then(resp => {
       const data = resp.data;
       if (!data) {
-        return reject(createError(400, 'no data'));
+        reject(createError(400, 'no data'));
       }
       if (!data.success) {
-        return reject(createError(400, data.message));
+        reject(createError(400, data.message));
       }
       resolve(data.data);
     }).catch(err => {

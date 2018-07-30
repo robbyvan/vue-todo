@@ -6,8 +6,6 @@ module.exports = async (ctx, renderer, template, bundle) => {
   const context = { url: ctx.path, user: ctx.session.user };
 
   try {
-    // const appString = await renderer.renderToString(context);
-
     const app = await bundle(context);
 
     if (context.router.currentRoute.fullPath !== ctx.path) {
@@ -31,6 +29,7 @@ module.exports = async (ctx, renderer, template, bundle) => {
     ctx.body = html;
 
   } catch(e) {
+    // reject: no matched component
     console.log('render error', e);
     throw e;
   }

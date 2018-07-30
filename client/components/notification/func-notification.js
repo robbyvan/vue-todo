@@ -33,7 +33,7 @@ export default {
     afterEnter () {
       // debugger; // eslint-disable-line no-debugger
       this.height = this.$el.offsetHeight;
-      console.log('after enter height is: ', this.height);
+      // console.log('after enter height is: ', this.height);
     }
   },
   data () {

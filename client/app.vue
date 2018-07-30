@@ -10,7 +10,6 @@
       <router-view />
     </transition>
 
-    <button @click="notify">Push notification</button>
     <Footer></Footer>
   </div>
 </template>

@@ -2,10 +2,10 @@
 // import Login from '../views/login/login.vue';
 
 export default [
-  {
-    path: '/',
-    redirect: '/app',
-  },
+  // {
+  //   path: '/',
+  //   redirect: '/app',
+  // },
   {
     path: '/app',
     component: () => import(/* webpackChunkName: "todo-view" */'../views/todo/todo.vue'),
@@ -20,5 +20,9 @@ export default [
     path: '/login',
     component: () => import(/* webpackChunkName: "login-view" */'../views/login/login.vue'),
     // component: Login,
+  },
+  {
+    path: '/*',
+    redirect: '/app',
   },
 ];

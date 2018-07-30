@@ -4,7 +4,7 @@ const webpack = require('webpack');
 //Plugins
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const merge = require('webpack-merge');
-// const VueServerPlugin = require('vue-server-renderer/server-plugin');
+const VueServerPlugin = require('vue-server-renderer/server-plugin');
 
 let config;
 
