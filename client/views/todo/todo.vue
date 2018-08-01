@@ -62,6 +62,7 @@
     },
     mounted () {
       if (this.todos && this.todos.length < 1) {
+        console.log('this.todos,', this.todos);
         this.fetchTodos();
       }
     },

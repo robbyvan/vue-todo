@@ -14,19 +14,19 @@ Vue.use(Vuex);
 const router = createRouter();
 const store = createStore();
 
-router.beforeEach((to, from, next) => {
-  console.log('before each.');
-  next();
-});
+// router.beforeEach((to, from, next) => {
+//   console.log('before each.');
+//   next();
+// });
 
-router.beforeResolve((to, from, next) => {
-  console.log('before resolve.');
-  next();
-});
+// router.beforeResolve((to, from, next) => {
+//   console.log('before resolve.');
+//   next();
+// });
 
-router.afterEach((to, from) => {
-  console.log('after each.');
-});
+// router.afterEach((to, from) => {
+//   console.log('after each.');
+// });
 
 new Vue({
   router,

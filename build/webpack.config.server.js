@@ -20,7 +20,7 @@ let plugins = [
   new VueLoaderPlugin(),
 ];
 
-if (isDev) {
+if (!isDev) {
   plugins = [...plugins, new VueServerPlugin()];
 }
 

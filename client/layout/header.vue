@@ -9,7 +9,7 @@
     text-align center
     h1 {
       font-size 100px
-      color rgba(175, 47, 47, 0.4)
+      color rgba(35, 100, 140, 0.5)
       margin 20px
     }
   }
