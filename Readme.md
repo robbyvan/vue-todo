@@ -1,4 +1,8 @@
 # Todo-Vue
+
+## Demo
+![](./demo-gifs/vuetodo.gif)
+
 ## 运行
 ```
   yarn build
@@ -102,5 +106,4 @@
 └── yarn.lock
 ```
 
-## Demo
-![](./demo-gifs/vuetodo.gif)
+
